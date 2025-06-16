@@ -25,6 +25,9 @@ public class Enemy : MonoBehaviour
     [Header("총알 발사 위치 설정")]
     public Transform[] firePoints;             // 총알 발사 위치들
 
+    [Header("사운드 설정")]
+    public AudioClip deathSound;               // 사망 시 효과음
+
     // 내부 상태
     private int currentHealth;
     private float fireTimer;
@@ -57,25 +60,11 @@ public class Enemy : MonoBehaviour
 
         Vector3 pos = transform.position;
 
-        // Y축 범위 체크
-        if (movingUp && pos.y >= maxY)
-        {
-            movingUp = false;
-        }
-        else if (!movingUp && pos.y <= minY)
-        {
-            movingUp = true;
-        }
+        if (movingUp && pos.y >= maxY) movingUp = false;
+        else if (!movingUp && pos.y <= minY) movingUp = true;
 
-        // X축 범위 체크
-        if (movingRight && pos.x >= maxX)
-        {
-            movingRight = false;
-        }
-        else if (!movingRight && pos.x <= minX)
-        {
-            movingRight = true;
-        }
+        if (movingRight && pos.x >= maxX) movingRight = false;
+        else if (!movingRight && pos.x <= minX) movingRight = true;
     }
 
     /// <summary>
@@ -121,12 +110,15 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// 폭발 이펙트 생성 후 제거 + GameManager에 처치 통보
+    /// 폭발 이펙트 생성 후 제거 + GameManager에 처치 통보 + 사망 사운드 재생
     /// </summary>
     void Die()
     {
         if (explosionEffect != null)
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+        if (deathSound != null)
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
 
         if (GameManager.instance != null)
             GameManager.instance.OnEnemyKilled();

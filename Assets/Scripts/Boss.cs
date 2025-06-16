@@ -2,7 +2,7 @@ using UnityEngine;
 
 /// <summary>
 /// 보스의 등장, 공격 패턴, 데미지 처리, 사망을 포함한 전체 제어 스크립트.
-/// 이번 수정에서는 '등장 중 무적 상태' 로직이 추가됨.
+/// 이번 수정에서는 '등장 중 무적 상태' 로직과 사운드 재생이 추가됨.
 /// </summary>
 public class Boss : MonoBehaviour
 {
@@ -24,6 +24,9 @@ public class Boss : MonoBehaviour
     public Vector3 targetPosition;     // 보스가 멈출 위치
     public float entrySpeed = 2f;      // 등장 속도
     private bool hasEntered = false;   // 등장 완료 여부 (공격/피격 조건에 사용)
+
+    [Header("사운드 설정")]
+    public AudioClip deathSound;       // 사망 시 재생할 사운드
 
     void Start()
     {
@@ -99,12 +102,16 @@ public class Boss : MonoBehaviour
     }
 
     /// <summary>
-    /// 보스가 사망했을 때 폭발 이펙트를 생성하고 제거
+    /// 보스가 사망했을 때 폭발 이펙트를 생성하고 사운드 재생 후 제거
     /// </summary>
     void Die()
     {
         if (explosionEffect != null)
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+        // 사운드가 설정되어 있다면 해당 위치에서 재생
+        if (deathSound != null)
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
 
         Debug.Log("🎉 보스 처치 완료!");
         Destroy(gameObject);

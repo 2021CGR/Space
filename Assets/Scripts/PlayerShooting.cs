@@ -17,6 +17,16 @@ public class PlayerShooting : MonoBehaviour
     public Transform laserFirePoint;          // 레이저 발사 위치
     private bool isSpecialReady = false;      // 스페셜 발사 가능 여부
 
+    [Header("사운드 설정")]
+    public AudioClip shootSound;              // 총알 발사 효과음
+    private AudioSource audioSource;          // AudioSource 컴포넌트 참조
+
+    void Start()
+    {
+        // AudioSource 가져오기
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         HandleNormalFire();
@@ -32,6 +42,10 @@ public class PlayerShooting : MonoBehaviour
         {
             // 총알 생성
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+            // 발사 사운드 재생
+            if (shootSound != null && audioSource != null)
+                audioSource.PlayOneShot(shootSound);
 
             // 다음 발사 시간 갱신
             nextFireTime = Time.time + fireRate;
