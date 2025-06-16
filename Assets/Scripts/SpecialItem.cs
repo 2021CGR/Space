@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class SpecialItem : MonoBehaviour
 {
+    // 아이템이 생성된 후 몇 초 뒤에 사라질지를 결정하는 변수 (기본값: 5초)
+    public float lifetime = 5f;
+
+    void Start()
+    {
+        // 일정 시간이 지나면 아이템이 자동으로 사라지도록 설정
+        Destroy(gameObject, lifetime);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         // 태그가 "Player"인 오브젝트와 충돌했을 경우에만
