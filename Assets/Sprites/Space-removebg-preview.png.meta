@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 5ab5f58b8e2f2b642aae44f828cde889
+guid: 1cd1978ac9759954e9483af805844343
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3451699440861859892
-    second: MainMenu_0
+      213: 1308033067527883771
+    second: Space-removebg-preview_0
+  - first:
+      213: -2170765710214752557
+    second: Space-removebg-preview_1
+  - first:
+      213: 8666736607364099649
+    second: Space-removebg-preview_2
+  - first:
+      213: 9113251331882167704
+    second: Space-removebg-preview_3
+  - first:
+      213: -8127630762424791906
+    second: Space-removebg-preview_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainMenu_0
+      name: Space-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1980
-        height: 1080
+        x: 88
+        y: 126
+        width: 81
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +140,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ccfa30c75a91910d0800000000000000
-      internalID: -3451699440861859892
+      spriteID: bfbc6780521172210800000000000000
+      internalID: 1308033067527883771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Space-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 126
+        width: 79
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d61d087614efd1e0800000000000000
+      internalID: -2170765710214752557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Space-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 126
+        width: 94
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14eafcba60f664870800000000000000
+      internalID: 8666736607364099649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Space-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 126
+        width: 86
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89d21b16dc5c87e70800000000000000
+      internalID: 9113251331882167704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Space-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 126
+        width: 73
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9c022432ead43f80800000000000000
+      internalID: -8127630762424791906
       vertices: []
       indices: 
       edges: []
@@ -148,7 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MainMenu_0: -3451699440861859892
+      Space-removebg-preview_0: 1308033067527883771
+      Space-removebg-preview_1: -2170765710214752557
+      Space-removebg-preview_2: 8666736607364099649
+      Space-removebg-preview_3: 9113251331882167704
+      Space-removebg-preview_4: -8127630762424791906
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
