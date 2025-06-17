@@ -134,18 +134,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00762ec88c162746a2acab3ac6c9d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
+  moveSpeed: 4
   minY: -4.2
   maxY: 4.2
   minX: 1
   maxX: 8
-  maxHealth: 5
+  maxHealth: 3
   explosionEffect: {fileID: 8471294964113794203, guid: 5160c5f72c876be4a814a7d1501c27d3, type: 3}
   bulletPrefab: {fileID: 6694949928203335051, guid: 2aec02a81d7863f488a5f94bbba6f9c2, type: 3}
   fireRate: 2
   firePoints:
   - {fileID: 1872660089861761693}
   - {fileID: 7565092059894817983}
+  deathSound: {fileID: 0}
 --- !u!60 &1651458035689801132
 PolygonCollider2D:
   m_ObjectHideFlags: 0

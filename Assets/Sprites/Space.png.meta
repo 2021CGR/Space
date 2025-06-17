@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 1cd1978ac9759954e9483af805844343
+guid: 513dd179db9b83d459beeabc3bf8184c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1308033067527883771
-    second: Space-removebg-preview_0
+      213: -5858099061022299432
+    second: Space_0
   - first:
-      213: -2170765710214752557
-    second: Space-removebg-preview_1
+      213: -5100910793555767408
+    second: Space_1
   - first:
-      213: 8666736607364099649
-    second: Space-removebg-preview_2
+      213: -4730890088344036595
+    second: Space_2
   - first:
-      213: 9113251331882167704
-    second: Space-removebg-preview_3
+      213: 6339936375001202730
+    second: Space_3
   - first:
-      213: -8127630762424791906
-    second: Space-removebg-preview_4
+      213: 6719421838480191978
+    second: Space_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -108,24 +108,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Space-removebg-preview_0
+      name: Space_0
       rect:
         serializedVersion: 2
         x: 88
@@ -140,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bfbc6780521172210800000000000000
-      internalID: 1308033067527883771
+      spriteID: 8da67b801f9d3bea0800000000000000
+      internalID: -5858099061022299432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Space-removebg-preview_1
+      name: Space_1
       rect:
         serializedVersion: 2
         x: 178
@@ -162,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d61d087614efd1e0800000000000000
-      internalID: -2170765710214752557
+      spriteID: 09f0727b8ace539b0800000000000000
+      internalID: -5100910793555767408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Space-removebg-preview_2
+      name: Space_2
       rect:
         serializedVersion: 2
         x: 257
@@ -184,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 14eafcba60f664870800000000000000
-      internalID: 8666736607364099649
+      spriteID: d0b56dca780885eb0800000000000000
+      internalID: -4730890088344036595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Space-removebg-preview_3
+      name: Space_3
       rect:
         serializedVersion: 2
         x: 352
@@ -206,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89d21b16dc5c87e70800000000000000
-      internalID: 9113251331882167704
+      spriteID: a20468aea8afbf750800000000000000
+      internalID: 6339936375001202730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Space-removebg-preview_4
+      name: Space_4
       rect:
         serializedVersion: 2
         x: 447
@@ -228,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e9c022432ead43f80800000000000000
-      internalID: -8127630762424791906
+      spriteID: ae13d92af8e204d50800000000000000
+      internalID: 6719421838480191978
       vertices: []
       indices: 
       edges: []
@@ -248,11 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Space-removebg-preview_0: 1308033067527883771
-      Space-removebg-preview_1: -2170765710214752557
-      Space-removebg-preview_2: 8666736607364099649
-      Space-removebg-preview_3: 9113251331882167704
-      Space-removebg-preview_4: -8127630762424791906
+      Space_0: -5858099061022299432
+      Space_1: -5100910793555767408
+      Space_2: -4730890088344036595
+      Space_3: 6339936375001202730
+      Space_4: 6719421838480191978
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
