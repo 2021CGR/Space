@@ -146,7 +146,7 @@ MonoBehaviour:
   firePoints:
   - {fileID: 1872660089861761693}
   - {fileID: 7565092059894817983}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 56a37fb5517ffbb4ab5cc39d3f024ef2, type: 3}
 --- !u!60 &1651458035689801132
 PolygonCollider2D:
   m_ObjectHideFlags: 0
