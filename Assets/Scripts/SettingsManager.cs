@@ -1,5 +1,5 @@
-using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
@@ -29,8 +29,9 @@ public class SettingsManager : MonoBehaviour
 
         // ✅ 처음 생성된 경우엔 유지
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
-        Debug.Log($"🛡 SettingsManager 유지됨: {gameObject.name}");
+
+        // 🧹 DontDestroyOnLoad 제거됨 → 다음 씬에서 사라짐
+        Debug.Log($"🛡 SettingsManager 생성됨: {gameObject.name}");
     }
 
     private void Start()
@@ -81,3 +82,4 @@ public class SettingsManager : MonoBehaviour
         Debug.Log($"🎚️ {parameter} 볼륨 설정됨: {value} → dB: {db}");
     }
 }
+
