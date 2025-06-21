@@ -1,62 +1,83 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
-/// <summary>
-/// 모든 씬에서 공유되는 사운드 설정 관리자.
-/// - 슬라이더로 볼륨 조절 가능
-/// - PlayerPrefs로 저장 및 복원
-/// - 씬 전환 시에도 볼륨 초기화 안 됨
-/// </summary>
 public class SettingsManager : MonoBehaviour
 {
-    [Header("UI 연결")]
-    public Slider volumeSlider;
+    [Header("🎚️ 슬라이더 연결")]
+    public Slider bgmSlider;
+    public Slider sfxSlider;
 
-    private const string VolumeKey = "MasterVolume";
-    private float previousVolume;
+    [Header("🎵 Audio Mixer 연결")]
+    public AudioMixer audioMixer;
 
-    void Awake()
+    // AudioMixer 파라미터 이름
+    private const string BGM_PARAM = "BackGroundVolume";
+    private const string SFX_PARAM = "SFXVolume";
+
+    // ✅ 중복 방지용 인스턴스
+    private static SettingsManager instance;
+
+    private void Awake()
     {
-        // ✅ 씬 진입 시 저장된 볼륨을 AudioListener에 우선 반영
-        float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 1f);
-        AudioListener.volume = savedVolume;
-        previousVolume = savedVolume;
-
-        Debug.Log($"[SettingsManager.Awake] 볼륨 복원: {savedVolume:F2}");
-    }
-
-    void Start()
-    {
-        if (volumeSlider != null)
+        // ✅ 중복된 SettingsManager가 있으면 제거
+        if (instance != null && instance != this)
         {
-            float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 1f);
-
-            // ✅ 슬라이더 값을 설정하되 SetVolume이 자동 실행되지 않도록 처리
-            volumeSlider.SetValueWithoutNotify(savedVolume);
-
-            // ✅ 슬라이더 조작 시에만 SetVolume이 호출되도록 연결
-            volumeSlider.onValueChanged.AddListener(SetVolume);
+            Destroy(gameObject);
+            return;
         }
+
+        // ✅ 처음 생성된 경우엔 유지
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+        Debug.Log($"🛡 SettingsManager 유지됨: {gameObject.name}");
     }
 
-    /// <summary>
-    /// 슬라이더 값 변경 시 호출됨 — 볼륨 적용 + 저장 + 디버그 출력
-    /// </summary>
-    public void SetVolume(float value)
+    private void Start()
     {
-        AudioListener.volume = value;
-        PlayerPrefs.SetFloat(VolumeKey, value);
-        PlayerPrefs.Save();
+        // 🔧 이벤트 중복 방지를 위해 기존 이벤트 제거
+        bgmSlider.onValueChanged.RemoveAllListeners();
+        sfxSlider.onValueChanged.RemoveAllListeners();
 
-        // 🔊 디버그 출력
-        if (value > previousVolume)
-            Debug.Log($"🔊 볼륨 증가: {previousVolume:F2} → {value:F2}");
-        else if (value < previousVolume)
-            Debug.Log($"🔉 볼륨 감소: {previousVolume:F2} → {value:F2}");
-        else
-            Debug.Log($"🔁 볼륨 동일: {value:F2}");
+        // 🔹 저장된 값 불러오기 (없으면 1.0f)
+        float savedBgmVolume = PlayerPrefs.GetFloat(BGM_PARAM, 1f);
+        float savedSfxVolume = PlayerPrefs.GetFloat(SFX_PARAM, 1f);
 
-        previousVolume = value;
+        // 🔹 슬라이더에 값 먼저 반영
+        bgmSlider.value = savedBgmVolume;
+        sfxSlider.value = savedSfxVolume;
+
+        // 🔹 Mixer에 실제로 적용
+        SetVolume(BGM_PARAM, savedBgmVolume);
+        SetVolume(SFX_PARAM, savedSfxVolume);
+
+        Debug.Log($"📌 [SettingsManager.Start] 🎵 BGM 복원: {savedBgmVolume}, 🔊 SFX 복원: {savedSfxVolume}");
+
+        // ✅ 슬라이더 값 변경 시 직접 연결
+        bgmSlider.onValueChanged.AddListener(OnBGMVolumeChanged);
+        sfxSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
+    }
+
+    public void OnBGMVolumeChanged(float value)
+    {
+        SetVolume(BGM_PARAM, value);
+        PlayerPrefs.SetFloat(BGM_PARAM, value);
+        Debug.Log($"📢 배경음 복원 변경: {value}");
+    }
+
+    public void OnSFXVolumeChanged(float value)
+    {
+        SetVolume(SFX_PARAM, value);
+        PlayerPrefs.SetFloat(SFX_PARAM, value);
+        Debug.Log($"🔊 효과음 복원 변경: {value}");
+    }
+
+    private void SetVolume(string parameter, float value)
+    {
+        float clamped = Mathf.Clamp(value, 0.0001f, 1f);
+        float db = Mathf.Log10(clamped) * 20f;
+
+        audioMixer.SetFloat(parameter, db);
+        Debug.Log($"🎚️ {parameter} 볼륨 설정됨: {value} → dB: {db}");
     }
 }
-

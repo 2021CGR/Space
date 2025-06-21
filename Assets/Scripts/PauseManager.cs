@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ESC 키로 일시정지 및 재개를 제어하고, 설정창과 메인메뉴 이동을 처리.
+/// ESC 키로 일시정지 및 재개를 제어하고,
+/// 설정창과 메인메뉴 이동을 처리.
 /// SettingsPanel이 열려 있어도 게임은 항상 멈춘 상태를 유지.
 /// </summary>
 public class PauseManager : MonoBehaviour
@@ -55,6 +56,9 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;                        // 게임 정지
         pausePanel.SetActive(true);                 // Pause 패널 열기
         settingsPanel.SetActive(false);             // 설정창 닫기
+
+        // 🟡 커서 보이게 설정
+        CursorManager.Instance.SetCursorVisible(true);
     }
 
     /// <summary>
@@ -67,6 +71,9 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;                        // 게임 재개
         pausePanel.SetActive(false);                // Pause 패널 닫기
         settingsPanel.SetActive(false);             // 설정창도 닫기
+
+        // 🟡 커서 숨김
+        CursorManager.Instance.SetCursorVisible(false);
     }
 
     /// <summary>
@@ -79,13 +86,11 @@ public class PauseManager : MonoBehaviour
 
         pausePanel.SetActive(false);                // Pause 메뉴 닫기
         settingsPanel.SetActive(true);              // 설정창 열기
-
-        // ❌ 게임을 재개하지 않음 — 계속 멈춰 있음 (Time.timeScale 유지)
     }
 
     /// <summary>
     /// 설정창 닫기
-    /// Pause 메뉴로 복귀하지 않는다면 게임은 자동으로 재개됨
+    /// Pause 메뉴로 복귀하지 않으면 게임 자동 재개
     /// </summary>
     public void CloseSettings()
     {
@@ -93,12 +98,25 @@ public class PauseManager : MonoBehaviour
 
         settingsPanel.SetActive(false);             // 설정창 닫기
 
-        // PausePanel도 꺼져 있으면 게임 재개
         if (!pausePanel.activeSelf)
         {
             Debug.Log("✅ 설정창만 열려 있었으므로 게임 재개");
             Time.timeScale = 1f;
+
+            // 🟡 커서 숨김
+            CursorManager.Instance.SetCursorVisible(false);
         }
+    }
+
+    /// <summary>
+    /// 설정창 닫고 Pause 화면으로 복귀
+    /// </summary>
+    public void CloseSettingsAndReturnToPause()
+    {
+        Debug.Log("↩️ 설정 닫고 Pause 화면으로 돌아감");
+
+        settingsPanel.SetActive(false);             // 설정창 닫기
+        pausePanel.SetActive(true);                 // Pause 화면 다시 열기
     }
 
     /// <summary>
@@ -112,3 +130,4 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");         // 메인 메뉴로 이동
     }
 }
+

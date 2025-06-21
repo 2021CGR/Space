@@ -14,10 +14,23 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        // 싱글톤 설정
         if (instance == null) instance = this;
         else Destroy(gameObject);
     }
 
+    void Start()
+    {
+        // 🎵 인게임 배경음 재생
+        BGMManager.Instance?.PlayBGM(BGMType.InGame);
+
+        // 🖱️ 게임 시작 시 마우스 커서 숨기기 (처음 진입 시에도 확실히)
+        CursorManager.Instance.SetCursorVisible(false);
+    }
+
+    /// <summary>
+    /// 적이 죽었을 때 호출됨
+    /// </summary>
     public void OnEnemyKilled()
     {
         killedEnemies++;

@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// 플레이어의 일반 총알 및 스페셜 공격 기능.
-/// 각 발사마다 사운드를 재생함.
-/// </summary>
 public class PlayerShooting : MonoBehaviour
 {
     [Header("총알 설정")]
@@ -28,28 +24,22 @@ public class PlayerShooting : MonoBehaviour
         HandleSpecialFire();
     }
 
-    /// <summary>
-    /// 일반 총알 자동 발사 + 사운드
-    /// </summary>
     void HandleNormalFire()
     {
         if (Time.time >= nextFireTime)
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-            // 🔊 총알 사운드 재생
+            // 🔊 총알 사운드 재생 → BGMManager 통해 Mixer 반영
             if (shootClip != null)
             {
-                AudioSource.PlayClipAtPoint(shootClip, firePoint.position);
+                BGMManager.Instance?.PlaySFX(shootClip);
             }
 
             nextFireTime = Time.time + fireRate;
         }
     }
 
-    /// <summary>
-    /// 스페셜 공격 키 입력 시 발사 + 사운드
-    /// </summary>
     void HandleSpecialFire()
     {
         if (isSpecialReady && Input.GetKeyDown(KeyCode.Space))
@@ -57,35 +47,29 @@ public class PlayerShooting : MonoBehaviour
             FireLaser();
             isSpecialReady = false;
 
-            // 에너지 소비
             PlayerSpecialEnergy energy = GetComponent<PlayerSpecialEnergy>();
             if (energy != null)
             {
                 energy.ConsumeEnergy();
             }
 
-            // 🔊 스페셜 사운드 재생
+            // 🔊 스페셜 사운드 재생 → BGMManager 통해 Mixer 반영
             if (specialClip != null)
             {
-                AudioSource.PlayClipAtPoint(specialClip, laserFirePoint.position);
+                BGMManager.Instance?.PlaySFX(specialClip);
             }
         }
     }
 
-    /// <summary>
-    /// 외부에서 스페셜 공격 활성화
-    /// </summary>
     public void EnableSpecialAttack()
     {
         isSpecialReady = true;
     }
 
-    /// <summary>
-    /// 레이저 발사
-    /// </summary>
     void FireLaser()
     {
         Instantiate(laserPrefab, laserFirePoint.position, laserFirePoint.rotation);
     }
 }
+
 

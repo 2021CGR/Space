@@ -239,7 +239,7 @@ MonoBehaviour:
   maxHealth: 3
   explosionEffect: {fileID: 8471294964113794203, guid: 5160c5f72c876be4a814a7d1501c27d3, type: 3}
   bulletPrefab: {fileID: 6598151097064015686, guid: 05f843b560dd3934db2cf4e0a3b1753c, type: 3}
-  fireRate: 1
+  fireRate: 0.7
   firePoints:
   - {fileID: 467961859454568161}
   deathSound: {fileID: 8300000, guid: 56a37fb5517ffbb4ab5cc39d3f024ef2, type: 3}
