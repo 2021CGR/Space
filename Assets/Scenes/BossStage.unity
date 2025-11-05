@@ -306,6 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 296286860}
   - component: {fileID: 296286861}
+  - component: {fileID: 296286862}
   m_Layer: 0
   m_Name: ClearManager
   m_TagString: Untagged
@@ -343,6 +344,18 @@ MonoBehaviour:
   clearPanel: {fileID: 693076740}
   canvasGroup: {fileID: 693076744}
   fadeDuration: 1
+--- !u!225 &296286862
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296286859}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &343063927
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,6 +3126,10 @@ PrefabInstance:
     - target: {fileID: 573085027119238640, guid: 93e7f7c03ebf9b347a20e7a97a9da31a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598575032687466327, guid: 93e7f7c03ebf9b347a20e7a97a9da31a, type: 3}
+      propertyPath: maxHealth
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3598575032687466327, guid: 93e7f7c03ebf9b347a20e7a97a9da31a, type: 3}
       propertyPath: deathSound
