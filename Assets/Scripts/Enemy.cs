@@ -18,6 +18,12 @@ public class Enemy : MonoBehaviour
     [Tooltip("이동 가능한 X 최대값 (화면 오른쪽 경계)")]
     public float maxX = 8f;
 
+    [Header("스무딩 설정")]
+    public float smoothTime = 0.12f;
+
+    private Vector3 currentVelocity;
+    private Vector3 velocityRef;
+
     [Header("전투 및 체력 설정")]
     [Tooltip("적의 최대 체력입니다.")]
     public int maxHealth = 3;
@@ -59,16 +65,21 @@ public class Enemy : MonoBehaviour
         float yDirection = movingUp ? 1f : -1f;
         float xDirection = movingRight ? 1f : -1f;
 
-        Vector3 movement = new Vector3(xDirection, yDirection, 0f) * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
+        Vector3 targetVelocity = new Vector3(xDirection, yDirection, 0f) * moveSpeed;
+        currentVelocity = Vector3.SmoothDamp(currentVelocity, targetVelocity, ref velocityRef, smoothTime);
 
-        Vector3 pos = transform.position;
+        Vector3 newPos = transform.position + currentVelocity * Time.deltaTime;
 
-        if (movingUp && pos.y >= maxY) movingUp = false;
-        else if (!movingUp && pos.y <= minY) movingUp = true;
+        newPos.x = Mathf.Clamp(newPos.x, minX, maxX);
+        newPos.y = Mathf.Clamp(newPos.y, minY, maxY);
 
-        if (movingRight && pos.x >= maxX) movingRight = false;
-        else if (!movingRight && pos.x <= minX) movingRight = true;
+        transform.position = newPos;
+
+        if (movingUp && newPos.y >= maxY) movingUp = false;
+        else if (!movingUp && newPos.y <= minY) movingUp = true;
+
+        if (movingRight && newPos.x >= maxX) movingRight = false;
+        else if (!movingRight && newPos.x <= minX) movingRight = true;
     }
 
     void HandleShooting()

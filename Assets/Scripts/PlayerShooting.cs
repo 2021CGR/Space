@@ -16,7 +16,6 @@ public class PlayerShooting : MonoBehaviour
 
     [Header("사운드 클립")]
     [SerializeField] private AudioClip shootClip;
-    [SerializeField] private AudioClip specialClip;
 
     void Update()
     {
@@ -53,11 +52,6 @@ public class PlayerShooting : MonoBehaviour
                 energy.ConsumeEnergy();
             }
 
-            // 🔊 스페셜 사운드 재생 → BGMManager 통해 Mixer 반영
-            if (specialClip != null)
-            {
-                BGMManager.Instance?.PlaySFX(specialClip);
-            }
         }
     }
 

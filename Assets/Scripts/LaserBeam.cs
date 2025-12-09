@@ -1,39 +1,78 @@
 using UnityEngine;
 
-/// <summary>
-/// 플레이어의 강한 레이저: 고정된 위치에서 발사되어
-/// 적을 감지하여 데미지를 입히고, 일정 시간 후 사라짐.
-/// </summary>
 public class LaserBeam : MonoBehaviour
 {
-    [Header("지속 시간")]
-    public float duration = 0.4f;         // 레이저 유지 시간 (초)
+    public float duration = 0.5f;
+    public float warmup = 0.12f;
+    public float cooldown = 0.18f;
+    public int damage = 999;
+    public bool scaleEase = true;
+    public float scaleInMin = 0.85f;
+    public float scaleOutMax = 1.05f;
+    public AnimationCurve alphaIn = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+    public AnimationCurve alphaOut = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
 
-    [Header("데미지 설정")]
-    public int damage = 999;              // 강한 데미지 (한 방에 죽는 수준)
+    private float time;
+    private SpriteRenderer[] renderers;
+    private Vector3 initialScale;
 
-    void Start()
+    void Awake()
     {
-        // 일정 시간이 지나면 자동으로 레이저 오브젝트 제거
-        Destroy(gameObject, duration);
+        renderers = GetComponentsInChildren<SpriteRenderer>();
+        initialScale = transform.localScale;
+    }
+
+    void Update()
+    {
+        time += Time.deltaTime;
+        float alpha = 1f;
+
+        if (time <= warmup)
+        {
+            float tIn = Mathf.Clamp01(time / warmup);
+            alpha = alphaIn.Evaluate(tIn);
+            if (scaleEase)
+            {
+                float s = Mathf.SmoothStep(0f, 1f, tIn);
+                transform.localScale = Vector3.Lerp(initialScale * scaleInMin, initialScale, s);
+            }
+        }
+        else if (time >= duration - cooldown)
+        {
+            float tOut = Mathf.Clamp01((time - (duration - cooldown)) / cooldown);
+            alpha = alphaOut.Evaluate(tOut);
+            if (scaleEase)
+            {
+                float s = Mathf.SmoothStep(0f, 1f, tOut);
+                transform.localScale = Vector3.Lerp(initialScale, initialScale * scaleOutMax, s);
+            }
+        }
+
+        if (renderers != null)
+        {
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                var c = renderers[i].color;
+                c.a = alpha;
+                renderers[i].color = c;
+            }
+        }
+
+        if (time >= duration)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // 적과 충돌했을 때만 처리
         if (other.CompareTag("Enemy"))
         {
-            // Enemy 스크립트를 찾아 데미지를 적용
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage); // 강한 데미지 적용
+                enemy.TakeDamage(damage);
             }
-
-            // (선택) 관통형이 아니라면 아래 줄을 주석 해제해서 즉시 제거
-            // Destroy(gameObject);
         }
     }
-
-    // Update() 제거됨 — 더 이상 이동하지 않음
 }
