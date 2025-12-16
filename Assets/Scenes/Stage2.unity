@@ -3796,7 +3796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b39150af210f514ebfbc6cebf3dbf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalEnemies: 5
+  totalEnemies: 20
   nextSceneName: Stage3
 --- !u!1 &1817709075
 GameObject:
@@ -4557,7 +4557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9095641256174324609, guid: 749b09c182b9de94da70b909ea988129, type: 3}
       propertyPath: maxSpawnCount
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9095641256174324609, guid: 749b09c182b9de94da70b909ea988129, type: 3}
       propertyPath: spawnInterval
@@ -4588,6 +4588,10 @@ PrefabInstance:
       propertyPath: spawnInterval
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5209811334536885298, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
+      propertyPath: dualShotItemPrefab
+      value: 
+      objectReference: {fileID: 4073807775289643675, guid: 7b64f3eaf6064a14190e8be33a751ca6, type: 3}
     - target: {fileID: 5638913975655402609, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
       propertyPath: m_Name
       value: ItemSpawner

@@ -9,6 +9,13 @@ public class PlayerShooting : MonoBehaviour
 
     private float nextFireTime;
 
+    [Header("듀얼샷 설정")]
+    public Transform leftFirePoint;     // 왼쪽 총알 발사 위치
+    public Transform rightFirePoint;    // 오른쪽 총알 발사 위치
+    private bool isDualShotActive = false;
+    private float dualShotDuration = 10f; // 듀얼샷 지속 시간
+    private float dualShotTimer = 0f;
+
     [Header("스페셜 레이저 설정")]
     public GameObject laserPrefab;
     public Transform laserFirePoint;
@@ -21,13 +28,26 @@ public class PlayerShooting : MonoBehaviour
     {
         HandleNormalFire();
         HandleSpecialFire();
+        HandleDualShotTimer();
     }
 
     void HandleNormalFire()
     {
         if (Time.time >= nextFireTime)
         {
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            if (isDualShotActive)
+            {
+                // 듀얼샷 활성화 시 두 발 발사
+                if (leftFirePoint != null)
+                    Instantiate(bulletPrefab, leftFirePoint.position, leftFirePoint.rotation);
+                if (rightFirePoint != null)
+                    Instantiate(bulletPrefab, rightFirePoint.position, rightFirePoint.rotation);
+            }
+            else
+            {
+                // 기본 총알 한 발
+                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            }
 
             // 🔊 총알 사운드 재생 → BGMManager 통해 Mixer 반영
             if (shootClip != null)
@@ -51,7 +71,19 @@ public class PlayerShooting : MonoBehaviour
             {
                 energy.ConsumeEnergy();
             }
+        }
+    }
 
+    void HandleDualShotTimer()
+    {
+        if (isDualShotActive)
+        {
+            dualShotTimer -= Time.deltaTime;
+            if (dualShotTimer <= 0f)
+            {
+                isDualShotActive = false;
+                Debug.Log("🔫 듀얼샷 종료: 원래대로 한 발만 발사");
+            }
         }
     }
 
@@ -60,10 +92,15 @@ public class PlayerShooting : MonoBehaviour
         isSpecialReady = true;
     }
 
+    public void EnableDualShot()
+    {
+        isDualShotActive = true;
+        dualShotTimer = dualShotDuration;
+        Debug.Log("🔫 듀얼샷 활성화: 10초간 2발 발사");
+    }
+
     void FireLaser()
     {
         Instantiate(laserPrefab, laserFirePoint.position, laserFirePoint.rotation);
     }
 }
-
-

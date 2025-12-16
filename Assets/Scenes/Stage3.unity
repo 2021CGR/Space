@@ -194,7 +194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 165a0836c6770d0468409cc65c394a0c, type: 2}
-  settingsPanel: {fileID: 0}
 --- !u!224 &26615645
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3323,7 +3322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b39150af210f514ebfbc6cebf3dbf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalEnemies: 7
+  totalEnemies: 30
   nextSceneName: BossStage
 --- !u!1 &1794085560
 GameObject:
@@ -4590,11 +4589,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9095641256174324609, guid: 749b09c182b9de94da70b909ea988129, type: 3}
       propertyPath: maxSpawnCount
-      value: 7
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9095641256174324609, guid: 749b09c182b9de94da70b909ea988129, type: 3}
       propertyPath: spawnInterval
-      value: 1.5
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 9095641256174324609, guid: 749b09c182b9de94da70b909ea988129, type: 3}
       propertyPath: enemyPrefabs.Array.size
@@ -4625,6 +4624,14 @@ PrefabInstance:
       propertyPath: spawnInterval
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5209811334536885298, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
+      propertyPath: energyItemPrefab
+      value: 
+      objectReference: {fileID: 529036457289573426, guid: eb48861bd8dc6dc48a82da61ef7e1db7, type: 3}
+    - target: {fileID: 5209811334536885298, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
+      propertyPath: dualShotItemPrefab
+      value: 
+      objectReference: {fileID: 4073807775289643675, guid: 7b64f3eaf6064a14190e8be33a751ca6, type: 3}
     - target: {fileID: 5638913975655402609, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
       propertyPath: m_Name
       value: ItemSpawner

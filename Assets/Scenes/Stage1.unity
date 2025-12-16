@@ -682,6 +682,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228055674}
   m_CullTransparentMesh: 1
+--- !u!4 &229143981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2348506899365437165, guid: 8984bf229050fb84584b86cbaebfc5ed, type: 3}
+  m_PrefabInstance: {fileID: 8200687674355309410}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &310867182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3445,6 +3450,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1626280980 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3258669921971473194, guid: 8984bf229050fb84584b86cbaebfc5ed, type: 3}
+  m_PrefabInstance: {fileID: 8200687674355309410}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1704331442
 GameObject:
   m_ObjectHideFlags: 0
@@ -3841,7 +3851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b39150af210f514ebfbc6cebf3dbf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalEnemies: 5
+  totalEnemies: 10
   nextSceneName: Stage2
 --- !u!1 &1795652093
 GameObject:
@@ -4557,11 +4567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9095641256174324609, guid: 749b09c182b9de94da70b909ea988129, type: 3}
       propertyPath: maxSpawnCount
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9095641256174324609, guid: 749b09c182b9de94da70b909ea988129, type: 3}
       propertyPath: spawnInterval
-      value: 1.5
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 9095641256174324609, guid: 749b09c182b9de94da70b909ea988129, type: 3}
       propertyPath: enemyPrefabs.Array.size
@@ -4588,6 +4598,10 @@ PrefabInstance:
       propertyPath: spawnInterval
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5209811334536885298, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
+      propertyPath: dualShotItemPrefab
+      value: 
+      objectReference: {fileID: 4073807775289643675, guid: 7b64f3eaf6064a14190e8be33a751ca6, type: 3}
     - target: {fileID: 5638913975655402609, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
       propertyPath: m_Name
       value: ItemSpawner
@@ -4645,6 +4659,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2860112098890962149, guid: 8984bf229050fb84584b86cbaebfc5ed, type: 3}
+      propertyPath: leftFirePoint
+      value: 
+      objectReference: {fileID: 229143981}
+    - target: {fileID: 2860112098890962149, guid: 8984bf229050fb84584b86cbaebfc5ed, type: 3}
+      propertyPath: rightFirePoint
+      value: 
+      objectReference: {fileID: 1626280980}
     - target: {fileID: 4423182030146201257, guid: 8984bf229050fb84584b86cbaebfc5ed, type: 3}
       propertyPath: energyIconUI
       value: 

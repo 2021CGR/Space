@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     [Header("다음 씬 설정")]
     public string nextSceneName = "Stage2"; // 다음으로 이동할 씬 이름
 
+    // 적 처치 이벤트
+    public System.Action onEnemyKilled;
+
     void Awake()
     {
         // 싱글톤 설정
@@ -35,6 +38,9 @@ public class GameManager : MonoBehaviour
     {
         killedEnemies++;
         Debug.Log($"적 처치 수: {killedEnemies}/{totalEnemies}");
+
+        // 이벤트 호출
+        onEnemyKilled?.Invoke();
 
         if (killedEnemies >= totalEnemies)
         {
