@@ -341,8 +341,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3399162746354032735, guid: 166d27f9578c690409977db1cf3f8fda, type: 3}
   firePoint: {fileID: 1623680309392133132}
   fireRate: 0.25
-  leftFirePoint: {fileID: 0}
-  rightFirePoint: {fileID: 0}
+  leftFirePoint: {fileID: 2348506899365437165}
+  rightFirePoint: {fileID: 3258669921971473194}
+  dualShotDuration: 5
   laserPrefab: {fileID: 9181673186511539878, guid: 66178181a52d68a4b9d3fd7e3fde276b, type: 3}
   laserFirePoint: {fileID: 7811596237652679447}
   shootClip: {fileID: 8300000, guid: e37abe6208de5934caeb2a46151217c1, type: 3}

@@ -6,65 +6,70 @@ public class ItemSpawner2D : MonoBehaviour
     public GameObject energyItemPrefab;    // 에너지(번개) 아이템 프리팹
     public GameObject dualShotItemPrefab; // 듀얼샷 아이템 프리팹
 
-    [Header("스폰 확률")]
-    [Range(0f, 1f)]
-    public float dualShotChance = 0.3f;  // 듀얼샷 아이템 생성 확률
-
     [Header("생성 위치 범위")]
     public float minX = -8f;             // X 최소값
     public float maxX = 8f;              // X 최대값
     public float minY = -4f;             // Y 최소값
     public float maxY = 4f;              // Y 최대값
 
-    [Header("스폰 설정")]
-    public int killsRequired = 5;        // 적 처치 수에 따라 에너지 아이템 생성
+    [Header("스폰 시간 설정")]
+    public float minSpawnTime = 5f;      // 최소 스폰 시간
+    public float maxSpawnTime = 10f;     // 최대 스폰 시간
 
-    private int currentKillCount = 0;
+    private float spawnTimer;
 
     void Start()
     {
-        // GameManager에 이벤트 등록
-        var gm = GameManager.instance;
-        if (gm != null)
+        // 첫 스폰 타이머 설정
+        SetNextSpawnTime();
+    }
+
+    void Update()
+    {
+        spawnTimer -= Time.deltaTime;
+
+        if (spawnTimer <= 0f)
         {
-            gm.onEnemyKilled += OnEnemyKilled;
-        }
-        else
-        {
-            Debug.LogWarning("GameManager.instance를 찾을 수 없어 레이저 아이템 생성이 작동하지 않을 수 있습니다.");
+            SpawnRandomItem();
+            SetNextSpawnTime();
         }
     }
 
-    void OnDestroy()
+    void SetNextSpawnTime()
     {
-        // 이벤트 해제
-        var gm = GameManager.instance;
-        if (gm != null)
-        {
-            gm.onEnemyKilled -= OnEnemyKilled;
-        }
+        spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
     }
 
-    // 주기 스폰 제거됨
-
-    void OnEnemyKilled()
+    void SpawnRandomItem()
     {
-        if (energyItemPrefab == null) return;
-        currentKillCount++;
-        if (currentKillCount >= killsRequired)
-        {
-            SpawnEnergyItem();
-            currentKillCount = 0;
-        }
-    }
-
-    void SpawnEnergyItem()
-    {
+        // 위치 설정
         float x = Random.Range(minX, maxX);
         float y = Random.Range(minY, maxY);
         Vector2 spawnPos = new Vector2(x, y);
-        Instantiate(energyItemPrefab, spawnPos, Quaternion.identity);
-        Debug.Log("⚡ 에너지(번개) 아이템 생성!");
+
+        // 아이템 결정 (50% 확률로 랜덤)
+        GameObject itemToSpawn;
+
+        // 0 또는 1이 랜덤으로 나옴 (0: 듀얼샷, 1: 에너지)
+        int randomSelect = Random.Range(0, 2);
+        
+        if (randomSelect == 0)
+        {
+            itemToSpawn = dualShotItemPrefab;
+            // 만약 듀얼샷 프리팹이 비어있다면 에너지 아이템으로 대체
+            if (itemToSpawn == null) itemToSpawn = energyItemPrefab;
+            else Debug.Log("🔫 듀얼샷 아이템 생성!");
+        }
+        else
+        {
+            itemToSpawn = energyItemPrefab;
+            Debug.Log("⚡ 에너지(번개) 아이템 생성!");
+        }
+
+        if (itemToSpawn != null)
+        {
+            Instantiate(itemToSpawn, spawnPos, Quaternion.identity);
+        }
     }
 
     // 듀얼샷/에너지 주기 스폰 제거됨

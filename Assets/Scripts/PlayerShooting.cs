@@ -12,8 +12,9 @@ public class PlayerShooting : MonoBehaviour
     [Header("듀얼샷 설정")]
     public Transform leftFirePoint;     // 왼쪽 총알 발사 위치
     public Transform rightFirePoint;    // 오른쪽 총알 발사 위치
+    public float dualShotDuration = 10f; // 듀얼샷 지속 시간 (인스펙터 수정 가능)
+    
     private bool isDualShotActive = false;
-    private float dualShotDuration = 10f; // 듀얼샷 지속 시간
     private float dualShotTimer = 0f;
 
     [Header("스페셜 레이저 설정")]

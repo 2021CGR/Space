@@ -41,15 +41,4 @@ public class PlayerSpecialEnergy : MonoBehaviour
         if (energyIconUI != null)
             energyIconUI.SetActive(false);      // 아이콘 숨김
     }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // 태그가 "Item"이면 에너지 아이템으로 간주
-        if (other.CompareTag("Item"))
-        {
-            Debug.Log("⚡ 에너지 아이템 획득!");
-            GainEnergy();                        // 에너지 활성화
-            Destroy(other.gameObject);           // 아이템 제거
-        }
-    }
 }

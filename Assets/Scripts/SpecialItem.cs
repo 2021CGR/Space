@@ -18,6 +18,10 @@ public class SpecialItem : MonoBehaviour
         {
             case ItemType.Lightning:
                 shooter.EnableSpecialAttack();
+                // [수정] 번개 아이템일 때만 에너지 UI 활성화
+                var energy = other.GetComponent<PlayerSpecialEnergy>();
+                if (energy != null) energy.GainEnergy();
+                
                 Debug.Log("⚡ 번개 아이템: 스페셜(레이저) 획득");
                 break;
             case ItemType.DualShot:

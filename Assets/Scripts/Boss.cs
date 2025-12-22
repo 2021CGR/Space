@@ -198,21 +198,7 @@ public class Boss : MonoBehaviour
         Destroy(gameObject);
     }
 
-    /// <summary>
-    /// [수정] 2D가 아닌 3D Collider (OnTriggerEnter) 사용 확인
-    /// 만약 2D 게임이라면 OnTriggerEnter2D로 변경해야 합니다.
-    /// </summary>
-    void OnTriggerEnter(Collider other)
-    {
-        // [추가] 플레이어 총알 태그 확인
-        if (other.CompareTag("PlayerBullet"))
-        {
-            // [추가] 총알의 데미지 스크립트에서 데미지를 가져오는 것이 더 확장성이 좋습니다.
-            // 여기서는 임시로 1 데미지를 줍니다.
-            TakeDamage(1);
-            Destroy(other.gameObject); // 총알 제거
-        }
-    }
+
 
     /// <summary>
     /// 현재 체력을 0과 1 사이의 값(백분율)으로 반환 (UI에 활용)

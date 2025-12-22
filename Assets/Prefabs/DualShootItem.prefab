@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8756513839343042192}
   - component: {fileID: 2814391197297599814}
   - component: {fileID: 3292539120611554600}
+  - component: {fileID: 8112599460198976616}
   m_Layer: 0
   m_Name: DualShootItem
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,3 +163,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8112599460198976616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073807775289643675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5baad91c6e9b85e49a10bf3ee1ce75f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  lifetime: 5

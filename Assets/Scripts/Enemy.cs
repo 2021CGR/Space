@@ -158,12 +158,5 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("PlayerBullet"))
-        {
-            TakeDamage(1);
-            Destroy(other.gameObject);
-        }
-    }
+
 }
