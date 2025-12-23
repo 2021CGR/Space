@@ -63,6 +63,9 @@ public class GameOverManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        // [추가] 재시작 모드 활성화 (스토리 스킵용)
+        GameManager.isRetry = true;
+
         // ❌ 커서 다시 숨김
         CursorManager.Instance.SetCursorVisible(false);
 
@@ -75,6 +78,9 @@ public class GameOverManager : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
+
+        // [추가] 메인 메뉴로 갈 때는 재시작 모드 해제
+        GameManager.isRetry = false;
 
         // ✅ 마우스 커서 보이게
         CursorManager.Instance.SetCursorVisible(true);

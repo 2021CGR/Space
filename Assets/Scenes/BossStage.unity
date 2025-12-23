@@ -172,6 +172,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5209811334536885298, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
+      propertyPath: energyItemPrefab
+      value: 
+      objectReference: {fileID: 529036457289573426, guid: eb48861bd8dc6dc48a82da61ef7e1db7, type: 3}
+    - target: {fileID: 5209811334536885298, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
+      propertyPath: dualShotItemPrefab
+      value: 
+      objectReference: {fileID: 4073807775289643675, guid: 7b64f3eaf6064a14190e8be33a751ca6, type: 3}
     - target: {fileID: 5638913975655402609, guid: d434e6332cb90864abacd9c9638c0f9a, type: 3}
       propertyPath: m_Name
       value: ItemSpawner
@@ -3668,7 +3676,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

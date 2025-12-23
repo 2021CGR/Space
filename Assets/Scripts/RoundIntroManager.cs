@@ -17,23 +17,51 @@ public class RoundIntroManager : MonoBehaviour
 
     void Start()
     {
+        // [수정] 코루틴으로 시작하여 스토리 매니저 대기 로직 추가
+        StartCoroutine(StartSequence());
+    }
+
+    private IEnumerator StartSequence()
+    {
+        // 1. 스토리 인트로가 실행 중이라면 끝날 때까지 대기
+        // (StoryIntroManager 클래스가 존재하고, IsPlaying이 true인 동안 대기)
+        if (StoryIntroManager.IsPlaying)
+        {
+            // 스토리가 진행되는 동안 게임 정지 유지 (이미 StoryIntroManager가 정지시켰겠지만 확실하게)
+            Time.timeScale = 0f;
+            
+            // 스토리가 끝날 때까지 대기
+            yield return new WaitWhile(() => StoryIntroManager.IsPlaying);
+        }
+
+        // 2. 라운드 인트로 시작
         if (freezeGameAtStart)
         {
             Time.timeScale = 0f; // 게임 정지 (페이드 동안)
+        }
+
+        // [추가] 라운드 시작 시 게임 BGM 재생 (스토리가 끝나고 여기서 재생됨)
+        if (BGMManager.Instance != null)
+        {
+            BGMManager.Instance.PlayBGM(BGMType.InGame);
+            Debug.Log("🔊 Round 시작: 게임 BGM 재생");
         }
 
         if (roundPanel != null)
         {
             roundPanel.alpha = 0f;
             roundPanel.gameObject.SetActive(true);
-            StartCoroutine(ShowRoundIntro());
+            yield return StartCoroutine(ShowRoundIntro());
         }
         else
         {
-            // [추가됨] 만약 라운드 패널이 없다면, 바로 게임 시작 및 커서 숨김 처리
             StartGameNow();
         }
     }
+
+    // [기존 StartCoroutine(ShowRoundIntro()) 호출 방식 변경에 따라 수정]
+    // Start() 함수가 IEnumerator StartSequence()로 대체되었으므로 
+    // 기존의 void Start() 내용은 위 코드로 통합되었습니다.
 
     private IEnumerator ShowRoundIntro()
     {
