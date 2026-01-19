@@ -28,7 +28,8 @@ public class PlayerShooting : MonoBehaviour
     void Update()
     {
         // [수정] 스토리가 진행 중이거나 게임이 멈춰있을 때는 발사 금지
-        if (StoryIntroManager.IsPlaying || Time.timeScale == 0f)
+        // (오프닝 스토리 OR 엔딩 스토리 중일 때)
+        if (StoryIntroManager.IsPlaying || EndingStoryManager.IsPlaying || Time.timeScale == 0f)
             return;
 
         HandleNormalFire();

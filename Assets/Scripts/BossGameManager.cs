@@ -16,6 +16,10 @@ public class BossGameManager : MonoBehaviour
     [Tooltip("보스 처치 시 활성화할 클리어 UI 패널")]
     public GameObject clearPanel;
 
+    [Header("🎬 엔딩 스토리")]
+    [Tooltip("보스 처치 후 나올 엔딩 스토리 매니저 (선택 사항)")]
+    public EndingStoryManager endingStoryManager;
+
     private bool isBossDefeated = false; // 중복 호출 방지용
 
     private void Awake()
@@ -48,13 +52,31 @@ public class BossGameManager : MonoBehaviour
         if (isBossDefeated) return;
         isBossDefeated = true;
 
-        Debug.Log("🎉 보스를 처치했습니다! 클리어 패널을 표시합니다.");
+        Debug.Log("🎉 보스 처치! 엔딩 스토리 또는 클리어 화면으로 이동");
 
-        // [추가] 클리어 패널 활성화
+        // [수정] 엔딩 스토리가 연결되어 있다면 먼저 실행
+        if (endingStoryManager != null)
+        {
+            endingStoryManager.StartEnding();
+        }
+        else
+        {
+            // 엔딩 스토리가 없으면 바로 클리어 UI 표시
+            ShowClearUI();
+        }
+    }
+
+    /// <summary>
+    /// 클리어 UI를 표시하고 커서를 보이게 함 (EndingStoryManager에서 호출 가능)
+    /// </summary>
+    public void ShowClearUI()
+    {
+        Debug.Log("🏆 클리어 화면 표시");
+
         if (clearPanel != null)
             clearPanel.SetActive(true);
 
-        // [추가] 클리어 시 커서 보이기
+        // 클리어 시 커서 보이기
         CursorManager.Instance?.SetCursorVisible(true);
     }
 }
